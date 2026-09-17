@@ -10,14 +10,44 @@ with sync_playwright() as p:
 
     page1.goto('https://www.ioba.org/members-directory')
 
-    container = page1.locator('._FiCX').first
+    container = page1.locator('._FiCX').first.wait_for(state='visible')
 
-    wait1 = container.wait_for(state='visible')
+    container = page1.locator('._FiCX').all()
 
-    title = container.locator('span[style="font-weight:bold;"]').first
+    for x in container:
 
-    x = title.inner_text()
+        title = x.locator('span[style="font-weight:bold;"]').first
 
-    print(x)
+        title_p = title.inner_text()
+
+        print(title_p)
+
+        email = x.locator('span[style="font-size:14px;"] a').first
+
+        email_p = email.inner_text()
+
+        print(email_p)
+
+        number = x.locator('span[style="font-size:14px;"]').nth(1)
+
+        number_p = number.inner_text()
+
+        print(number_p)
+
+        address = x.locator('span[style="font-size:14px;"]').nth(2)
+
+        address_p = address.inner_text()
+
+        print(address_p)
+
+        print()
+
+    next_button = page1.locator('a[aria-label="Next"]')
+
+    if next_button:
+
+        next_button.click()
+
+    time.sleep(5)
 
     browser.close()
