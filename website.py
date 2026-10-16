@@ -3,10 +3,39 @@
 from playwright.sync_api import sync_playwright
 import time
 from loguru import logger
+import psycopg2 as psy
 
+
+# Database configuration
+
+conn = psy.connect(host='localhost', dbname='postgres', user='postgres', password='1234', port='5432')
+
+cur = conn.cursor()
+
+print(conn)
+print(cur)
+
+# logger configuration
 
 logger.remove()
 logger.add('run.log', rotation='4MB')
+
+# PostgreSQL related functions
+
+def schema():
+
+    schema_create = cur.execute('''
+                                    CREATE TABLE IF NOT EXISTS bookstores (
+                                        id SERIAL PRIMARY KEY,
+                                        name TEXT,
+                                        email TEXT,
+                                        phone TEXT,
+                                        address TEXT
+                                        )
+                                ''')
+    print('Success! Table should be created in postgreSQL server...')
+
+    schema_commit = conn.commit()
 
 # play_playwright() starts the browser and visits the target website
 
@@ -26,6 +55,9 @@ def play_playwright():
 # after rendering, this function is parsing the tags and extracting the data
 
 def extraction(browser, page1):
+
+    query = '''INSERT INTO bookstores ( name, email, phone, address )
+            VALUES (%s, %s, %s, %s)'''
 
     logger.info('Finding master container of data needed...')
 
@@ -63,6 +95,12 @@ def extraction(browser, page1):
 
         print()
 
+        data = (title_p, email_p, number_p, address_p)
+
+        cur.execute(query, data)
+
+        conn.commit()
+
     next_button = page1.locator('a[aria-label="Next"]')
 
     last_page = page1.locator('div[class*="currentPage"]').last
@@ -83,10 +121,11 @@ def pagination(next_button):
 
     time.sleep(3)
 
-
 # This is the initialization phase of the entire script
 
 with sync_playwright() as p:
+
+    rule = schema()
 
     init_browser = play_playwright()
 
@@ -111,4 +150,6 @@ with sync_playwright() as p:
 
             loop = False
 
+    cur.close()
+    conn.close()
     browser.close()
