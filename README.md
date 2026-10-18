@@ -20,7 +20,7 @@ You can access the link to the website - [Click here](https://www.ioba.org/membe
 
 ### Demo
 
-<video src="https://github.com/user-attachments/assets/0d661b35-afa7-431d-85f8-afdf469d0466" width="600px" controls></video>
+<video src="https://github.com/user-attachments/assets/8ab2223a-7a89-40d6-ab77-953c5468f1a7" width="600px" controls></video>
 
 
 
