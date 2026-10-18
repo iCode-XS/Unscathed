@@ -1,4 +1,4 @@
-<img width="3072" height="1728" alt="image" src="https://github.com/user-attachments/assets/22459966-8eb8-47cb-b3ae-c3de516d697c" /># Unscathed
+# Unscathed
 
 This project was created because of my previous repository: multi-source-project
 
