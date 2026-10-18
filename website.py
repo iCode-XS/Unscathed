@@ -57,7 +57,12 @@ def play_playwright():
 def extraction(browser, page1):
 
     query = '''INSERT INTO bookstores ( name, email, phone, address )
-            VALUES (%s, %s, %s, %s)'''
+            VALUES (%s, %s, %s, %s)
+            ON CONFLICT (name)
+            DO UPDATE SET
+                email = EXCLUDED.email,
+                phone = EXCLUDED.phone,
+                address = EXCLUDED.address;'''
 
     logger.info('Finding master container of data needed...')
 
