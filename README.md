@@ -26,8 +26,16 @@ You can access the link to the website - [Click here](https://www.ioba.org/membe
 
 https://github.com/user-attachments/assets/47bfb201-58d6-47f3-b02b-4d56c96ead27
 
+I created a CSV file of the postgreSQL database storing the data, you can check the file with link down below:
 
+[Preview](https://www.dropbox.com/scl/fi/v96h67mlsocvhka1gm6ij/bookstores_export.csv?rlkey=52klvo7ej2uysq83fsnkek542&st=qc80dycm&e=1&dl=0) | [Download File](https://www.dropbox.com/scl/fi/v96h67mlsocvhka1gm6ij/bookstores_export.csv?rlkey=52klvo7ej2uysq83fsnkek542&st=qc80dycm&e=1&dl=1)
 
+### Tech Stack
 
+> python: the language i am using
 
+> playwright: the browser automation tool I am using to extract the data from the website
 
+> postgreSQL: for storing the data
+
+> loguru: for logging the state of the entire extraction just in case something unexpected happened
