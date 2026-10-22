@@ -24,8 +24,6 @@ You can access the link to the website - [Click here](https://www.ioba.org/membe
 
 ### Demo
 
-<video src="https://github.com/user-attachments/assets/47bfb201-58d6-47f3-b02b-4d56c96ead27" controls width="100%"></video>
-
 https://github.com/user-attachments/assets/47bfb201-58d6-47f3-b02b-4d56c96ead27
 
 
